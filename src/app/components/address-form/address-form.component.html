@@ -1,0 +1,121 @@
+<div class="container">
+  <h2 class="text-center mb-5">User Address Form</h2>
+  <div class="row">
+    <div class="col-md-6 offset-md-3">
+      <form [formGroup]="formData">
+        <div class="form-group">
+          <label for="User Name">User name</label>
+          <input
+            type="text"
+            class="form-control"
+            name="username"
+            placeholder="Enter username"
+            formControlName="username"
+          />
+        </div>
+        <div class="form-group">
+          <label for="Address 1">Address 1</label>
+          <input
+            type="text"
+            class="form-control"
+            name="address1"
+            placeholder="Enter address 1"
+            formControlName="address1"
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="Address 2">Address 2</label>
+          <input
+            type="text"
+            class="form-control"
+            name="address2"
+            placeholder="Enter address 2"
+            formControlName="address2"
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="City">City</label>
+          <input
+            type="text"
+            class="form-control"
+            name="city"
+            placeholder="Enter city"
+            formControlName="city"
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="State">State</label>
+          <input
+            type="text"
+            class="form-control"
+            name="state"
+            placeholder="Enter state"
+            formControlName="state"
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="Zip">Zip</label>
+          <input
+            type="text"
+            class="form-control"
+            name="zip"
+            placeholder="Enter zip code"
+            formControlName="zip"
+          />
+        </div>
+
+        <button
+          type="submit"
+          class="btn btn-primary"
+          [disabled]="!formData.valid"
+          (click)="onSubmit(formData.value)"
+        >
+          {{ editUser ? 'Update' : 'Submit' }}
+        </button>
+
+        <!-- <button
+          type="submit"
+          class="btn btn-primary"
+          *ngIf="showUpdateButton"
+          (click)="updateUser(formData)"
+        >
+          Update
+        </button> -->
+      </form>
+    </div>
+  </div>
+
+  <div class="row" *ngIf="addresses.length > 0">
+      <div class="col-md-6 offset-md-3">
+
+        <table class="table table-condensed table-striped">
+            <thead>
+                <tr>
+                    <th>User Name</th>
+                    <th>Address</th>
+                    <th>City</th>
+                    <th>State</th>
+                    <th>Zip</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let address of addresses">
+                    <td>{{address.username}}</td>
+                    <td>{{address.address1}}  {{address.address2}}</td>
+                    <td>{{address.city}}</td>
+                    <td>{{address.state}}</td>
+                    <td>{{address.zip}}</td>
+                    <td>
+                        <i class="fas fa-user-edit" (click)="showEditUser(address.userId)"></i> | 
+                        <i class="fas fa-user-minus" (click)="deleteUser(address.userId)"></i></td>
+                </tr>
+            </tbody>
+        </table>
+      </div>
+  </div>
+</div>
